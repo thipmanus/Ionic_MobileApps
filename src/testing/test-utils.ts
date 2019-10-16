@@ -5,15 +5,15 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 export class TestUtils {
     static beforeEachCompiler(components: Array<any>, providers:
         Array<any> = []): Promise<{ fixture: any, instance: any }> {
-            return TestUtils.configureIonicTestingModule(components,
-                providers)
-                .compileComponents().then(() => {
-                    const fixture: any = TestBed.createComponent(components[0]);
-                    return {
-                        fixture,
-                        instance: fixture.componentInstance,
-                    };
-                });
+        return TestUtils.configureIonicTestingModule(components,
+            providers)
+            .compileComponents().then(() => {
+                const fixture: any = TestBed.createComponent(components[0]);
+                return {
+                    fixture,
+                    instance: fixture.componentInstance,
+                };
+            });
     }
     static configureIonicTestingModule(components: Array<any>,
         providers: Array<any> = []): typeof TestBed {
