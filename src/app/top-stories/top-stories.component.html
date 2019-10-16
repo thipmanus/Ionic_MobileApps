@@ -1,0 +1,16 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Top Stories</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content padding>
+        <ion-refresher slot="fixed" [disabled]="false" (ionRefresh)="refresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <app-items [items]="items$ | async" (toOpen)="openUrl($event)"></app-items>
+        <ion-infinite-scroll (ionInfinite)="load($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-app>

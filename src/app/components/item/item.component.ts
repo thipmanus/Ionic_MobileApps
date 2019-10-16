@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Item } from 'src/app/model/item';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Item } from '../../models/item';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss'],
+  styleUrls: ['./item.component.scss']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent {
+  @Input() item: Item;
+  @Output() toOpen = new EventEmitter<string>();
 
-  @Input() item: Item
-  
-  constructor() { }
-
-  ngOnInit() {}
+  openPage(url: string) {
+    this.toOpen.emit(url);
+  }
 
 }
