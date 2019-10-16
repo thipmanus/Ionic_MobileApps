@@ -17,6 +17,6 @@ export function createMockItem(id: number = 1): Item {
       url: `http://www.example.com/${id}`,
       by: 'author',
       time: new Date().getTime() / 1000,
-      score: 100,
+      score: 100, 
     };
 }

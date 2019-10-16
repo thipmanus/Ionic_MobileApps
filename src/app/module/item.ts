@@ -6,6 +6,6 @@ export interface Item {
     time: number;
     score: number;
     text?: string;
-    descendants?: number;
+    descendants?: number; 
     kids?: number[];
 }

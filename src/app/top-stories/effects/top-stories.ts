@@ -21,7 +21,7 @@ export class TopStoriesEffects {
         ofType(TopStoriesActionTypes.Refresh),
         switchMap(() =>
             this.db.list('/v0/topstories').valueChanges()
-                .pipe(
+                .pipe( 
                     take(1),
                     mergeMap((ids: number[]) => of<Action>(
                         new topStoriesActions.LoadSuccess(ids),
