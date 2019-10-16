@@ -6,6 +6,14 @@ export const environment = {
   production: false,
   hackernews_db: {
     databaseURL: 'http://hacker-news.firebaseio.com'
+  },
+  app_db: {
+    apiKey: 'AIzaSyCkRVGFC_Seqky9FlX437WyErJMIVVz_N8',
+    authDomain: 'myapp-hn-82de7.firebaseapp.com',
+    databaseURL: 'https://myapp-hn-82de7.firebaseio.com',
+    projectId: 'myapp-hn-82de7',
+    storageBucket: 'myapp-hn-82de7.appspot.com',
+    messagingSenderId: '941904173108',
   }
 };
 /*

@@ -14,7 +14,7 @@ export class Refresh implements Action {
 export class LoadMore implements Action {
   readonly type = TopStoriesActionTypes.LoadMore;
 }
- 
+
 export class LoadSuccess implements Action {
   readonly type = TopStoriesActionTypes.LoadSuccess;
   constructor(public payload: number[]) {}

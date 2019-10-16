@@ -1,3 +1,4 @@
+import { Logout } from './../auth/actions/auth';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { from, Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -6,8 +7,11 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import * as fromTopStories from './reducers';
 import * as topStoriesActions from './actions/top-stories';
 import * as fromItems from '../reducers/items';
+import * as fromAuth from '../auth/reducers';
+import * as gravatar from 'gravatar';
 import { OpenPageService } from '../services/open-page/open-page.service';
 import { concatMap, filter } from 'rxjs/operators';
+import { User } from '../models/user';
 @Component({
   selector: 'app-top-stories',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +21,8 @@ import { concatMap, filter } from 'rxjs/operators';
 export class TopStoriesComponent implements OnInit, OnDestroy {
 
   items$: Observable<Items>;
+  loggedIn$: Observable<boolean>;
+  user$: Observable<User>;
   private itemsLoading$: Observable<boolean>;
   private idsLoading$: Observable<boolean>;
   private errors$: Observable<any>;
@@ -32,6 +38,8 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
     private openPageService: OpenPageService,
   ) {
     this.items$ = store.pipe(select(fromTopStories.getDisplayItems));
+    this.loggedIn$ = store.pipe(select(fromAuth.getLoggedIn));
+    this.user$ = store.pipe(select(fromAuth.getUser));
     this.itemsLoading$ = store.pipe(select(fromItems.isItemsLoading));
     this.idsLoading$ = store.pipe(select(fromTopStories.isTopStoriesLoading));
     this.errors$ = store.pipe(select(fromTopStories.getError), filter(error => error != null));
@@ -60,7 +68,11 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
   openUrl(url) {
     this.openPageService.open(url);
   }
-  
+
+  getPhotoURL(user: User) {
+    return user && (user.photoURL || gravatar.url(user.email));
+  }
+
   load(event: Event) {
     this.infiniteScrollComponent = event.target;
     this.doLoad(false);
@@ -78,7 +90,10 @@ export class TopStoriesComponent implements OnInit, OnDestroy {
       this.store.dispatch(new topStoriesActions.LoadMore());
     }
   }
-
+  
+  logout() {
+    this.store.dispatch(new Logout());
+  }
   private notifyScrollComplete(): void {
     if (this.infiniteScrollComponent) {
       this.infiniteScrollComponent.complete();

@@ -19,6 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
@@ -99,4 +100,14 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <universal-links>
+        <host name="jvp56.app.goo.gl" scheme="https" />
+        <host name="hacker-news-client-v4.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
+    <plugin name="cordova-plugin-buildinfo" spec="4.0.0" />
+    <plugin name="cordova-universal-links-plugin" spec="https://github.com/walteram/cordova-universal-links-plugin.git" />
+    <plugin name="cordova-plugin-browsertab" spec="0.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.1.0" />
 </widget>

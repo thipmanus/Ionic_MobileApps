@@ -17,11 +17,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopStoriesModule } from './top-stories/top-stories.module';
 import { reducers, CustomRouterStateSerializer } from './reducers';
 import { StoreModule } from '@ngrx/store';
+import { AuthModule } from './auth/auth.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ItemsEffects } from './effects/items';
 import { HACKER_NEWS_DB } from './hackernews-db';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { FavoritesModule } from './favorites/favorites.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,10 +32,13 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.hackernews_db),
+    AngularFireModule.initializeApp(environment.app_db),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     ServicesModule,
+    AuthModule,
     TopStoriesModule,
+    // FavoritesModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name: 'NgRx HNC DevTools',
