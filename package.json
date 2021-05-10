@@ -42,7 +42,7 @@
     "firebase": "^6.5.0",
     "gravatar": "^1.8.0",
     "jasmine-marbles": "^0.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.range": "^3.2.0",
     "moment": "^2.24.0",
     "rxjs": "~6.5.1",
